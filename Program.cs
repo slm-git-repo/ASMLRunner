@@ -12,19 +12,28 @@ namespace Runner
             {
                 case 1:
                     int bound = ChooseBoundNumber();                    
-                    int result = SumOfMultiple(bound);
-                    ShowResult(bound, result);
+                    int SumResult = SumOfMultiple(bound);
+                    ShowResult(bound, SumResult);
                     break;
 
                 case 2:
-                    SequenceAnalysis();
+                    var input = GetSentence();
+                    var SeqResult = SequenceAnalysis(input);
+                    ShowResult(input, SeqResult);
                     break;
             }
         }
 
+        /// <summary>Show the result from SumOfMultiple</summary>
         private static void ShowResult(int bound, int result)
         {
             Console.WriteLine($"The sum of all natural numbers that are a multiple of 3 or 5 below {bound} is {result}");
+        }
+
+        /// <summary>Show the result from SequenceAnalysis</summary>
+        private static void ShowResult(string input, string result)
+        {
+            Console.WriteLine($"Input: {input}, Output:{result}");
         }
 
         /// <summary>Show a menu with options</summary>
@@ -73,15 +82,23 @@ namespace Runner
             }
         }
 
+        /// <summary>Show a menu with options</summary>
+        private static string GetSentence()
+        {
+            Console.WriteLine("Write a sentence: ");
+            return Console.ReadLine();
+        }
 
+        /// <summary>Call SumOfMultiple class</summary>
         private static int SumOfMultiple(int bound)
         {
             return new SumOfMultiple().UpTo(bound);
         }
 
-        private static void SequenceAnalysis()
+        /// <summary>Call SequenceAnalysis class</summary>
+        private static string SequenceAnalysis(string input)
         {
-            throw new NotImplementedException();
+            return new SequenceAnalysis(input).OrderUpperLetters();
         }
     }
 }
